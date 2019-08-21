@@ -6,5 +6,9 @@ Some helper scripts for linux written (poorly) by Spencer Muise.
 
 |Script Name|Purpose|Usage|
 |-----------|-------|-----|
-|keyboard.sh|Set RGB effect for Logitech G910 keyboard, uses [MatMoul/g810-led](https://github.com/MatMoul/g810-led)|./keyboard.sh|
+|checkallupdates|Gets updates from official repods & the AUR, and displays them in a sorta-friendly way|./checkallupdates|
+|disable-ipv6|Disables IPV6 until next reboot|./disable-ipv6|
+|generateCertificate|Generate a certificate using a locally setup CA|./generateCertificate <hostname>|
+|mkv2mp4|Convert all mkvs in current directory to mp4|Copy script to directory containing mkvs and ./mkv2mp4|
+|uploadScreenshots|Uploads every png in ~/Photos/Screenshots to an imgur album|./uploadScreenshots|
 
