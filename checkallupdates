@@ -1,8 +1,36 @@
 #!/bin/bash
-echo 'Official Repos'
-echo '-----------------------------------'
-checkupdates
-echo '-----------------------------------'
-echo 'AUR'
-echo '-----------------------------------'
-yay -Qu
+OFFICIAL="$(checkupdates)"
+OFFICIALCOUNT=$(echo $OFFICIAL | wc -l)
+AUR="$(yay -Qum)"
+AURCOUNT=$(echo $AUR | wc -l)
+
+if [ -z "$OFFICIAL" ] && [ -z "$AUR" ]; then
+    echo 'No updates from Official Repos or AUR'
+    exit 1
+fi
+
+if [[ $OFFICIAL ]]; then
+	if [ $OFFICIALCOUNT == 1 ]; then
+	    echo "Official Repos ($OFFICIALCOUNT Update Available)"
+	else
+            echo "Official Repos ($OFFICIALCOUNT Updates Available)"
+	fi
+    echo '-----------------------------------'
+    echo $OFFICIAL
+else
+    echo 'No updates from Official Repos'
+fi
+echo ''
+echo ''
+if [[ $AUR ]]; then
+    if [ $OFFICIALCOUNT == 1 ]; then
+        echo "Arch User Repository ($AURCOUNT Update Available)"
+    else    
+        echo "Arch User Repository ($AURCOUNT Updates Available)"    
+    fi
+    echo '-----------------------------------'
+    echo $AUR
+else
+    echo 'No updates from the AUR'
+fi
+
