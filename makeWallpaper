@@ -1,2 +1,4 @@
 #!/bin/bash
+pkill wallblur
 wal -i $1 && cp $1 ~/.config/wall.png
+~/.3scripts/wallblur/wallblur.sh &
