@@ -3,6 +3,7 @@ OFFICIAL="$(checkupdates)"
 OFFICIALCOUNT=$(echo "$OFFICIAL" | wc -l)
 AUR="$(yay -Qum)"
 AURCOUNT=$(echo "$AUR" | wc -l)
+NEWS="$(yay -Pw)"
 
 if [ -z "$OFFICIAL" ] && [ -z "$AUR" ]; then
     echo 'No updates from Official Repos or AUR'
@@ -33,4 +34,12 @@ if [[ $AUR ]]; then
 else
     echo 'No updates from the AUR'
 fi
-
+echo ''
+echo ''
+if [ -z "$NEWS" ]; then
+    echo 'No new news items'
+else
+    echo "Arch News"
+    echo '-----------------------------------'
+    echo "$NEWS"
+fi
