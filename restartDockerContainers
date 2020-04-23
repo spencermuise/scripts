@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ~/.docker
+cd /home/smuise/.docker
 docker-compose restart
 currentDate=`date`
 echo $currentDate >> restartDockerContainers.txt
