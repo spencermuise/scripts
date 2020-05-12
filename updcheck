@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 
 official = os.popen('checkupdates').read()
 official_count = official.count('\n')
@@ -9,6 +10,10 @@ aur_count = aur.count('\n')
 
 singular = 'Update'
 plural = singular + 's'
+
+if official_count == 0 and aur_count == 0:
+    print("No updates from Official Repos or AUR")
+    sys.exit(0)
 
 if official_count >= 1:
     print("Official Repos ({} {} Available)".format(official_count,singular if official_count == 1 else plural))
