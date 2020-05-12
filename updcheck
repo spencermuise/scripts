@@ -1,35 +1,25 @@
-#!/bin/bash
-OFFICIAL="$(checkupdates)"
-OFFICIALCOUNT=$(echo "$OFFICIAL" | wc -l)
-AUR="$(yay -Qum)"
-AURCOUNT=$(echo "$AUR" | wc -l)
+#!/usr/bin/env python
 
-if [ -z "$OFFICIAL" ] && [ -z "$AUR" ]; then
-    echo 'No updates from Official Repos or AUR'
-    exit 1
-fi
+import os
 
-if [[ $OFFICIAL ]]; then
-	if [ $OFFICIALCOUNT == 1 ]; then
-	    echo "Official Repos ($OFFICIALCOUNT Update Available)"
-	else
-            echo "Official Repos ($OFFICIALCOUNT Updates Available)"
-	fi
-    echo '-----------------------------------'
-    echo "$OFFICIAL"
-else
-    echo 'No updates from Official Repos'
-fi
-echo ''
-echo ''
-if [[ $AUR ]]; then
-    if [ $OFFICIALCOUNT == 1 ]; then
-        echo "Arch User Repository ($AURCOUNT Update Available)"
-    else    
-        echo "Arch User Repository ($AURCOUNT Updates Available)"    
-    fi
-    echo '-----------------------------------'
-    echo "$AUR"
-else
-    echo 'No updates from the AUR'
-fi
+official = os.popen('checkupdates').read()
+official_count = official.count('\n')
+aur = os.popen('yay -Qum').read()
+aur_count = aur.count('\n')
+
+singular = 'Update'
+plural = singular + 's'
+
+if official_count >= 1:
+    print("Official Repos ({} {} Available)".format(official_count,singular if official_count == 1 else plural))
+    print('-----------------------------------')
+    print(official)
+else:
+    print("No updates from Official Repos\n")
+
+if aur_count >= 1:
+    print("Arch User Repository ({} {} Available)".format(aur_count,singular if aur_count == 1 else plural))
+    print('-----------------------------------')
+    print(aur)
+else:
+    print("No updates from Arch User Repository")
