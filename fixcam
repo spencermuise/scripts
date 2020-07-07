@@ -1,7 +1,14 @@
 #!/bin/bash
-echo "This will only work after disconnecting and reconnecting the cam"
-echo "Fixing webcam..."
+read -p "Press any key after you've disconnected and reconnected the webcam" -n1 -s
+echo ""
+echo "Starting First Pass"
 sudo modprobe -r uvcvideo
 sudo modprobe uvcvideo
 sudo systemctl restart zoneminder.service
-echo "Webcam restarted"
+echo "Finished First Pass"
+echo "Starting Second Pass"
+sudo modprobe -r uvcvideo
+sudo modprobe uvcvideo
+sudo systemctl restart zoneminder.service
+echo "Finished Second Pass"
+echo "Try it now"
