@@ -1,0 +1,4 @@
+#!/bin/bash
+PLURL="https://www.youtube.com/playlist?list=PLXZdfkLdZOwxP0rTf5P5a1Ei5rDDvzF8N"
+
+mpv $PLURL
