@@ -5,7 +5,7 @@ import sys
 
 official = os.popen('checkupdates').read()
 official_count = official.count('\n')
-aur = os.popen('yay -Qum').read()
+aur = os.popen('pikaur -Qua').read()
 aur_count = aur.count('\n')
 
 singular = 'Update'
